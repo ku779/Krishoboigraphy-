@@ -1,0 +1,235 @@
+
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photography Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Engagement&family=Pacifico&family=Sacramento&family=Peace+Sundress&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Engagement', cursive;
+      background: linear-gradient(to right, #e0f7fa, #fff3e0);
+      color: #333;
+    }
+    header {
+      background: linear-gradient(to right, #000000, #434343);
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+      font-family: 'Peace Sundress', cursive;
+      font-size: 1.5em;
+      letter-spacing: 2px;
+    }
+    nav {
+      background: #222;
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #f39c12;
+    }
+    .home {
+      text-align: center;
+      padding: 50px 20px;
+      background: #fffde7;
+    }
+    .home h2 {
+      font-size: 2.2em;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 30px;
+    }
+    .gallery-item {
+      position: relative;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 10px;
+      width: 280px;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .menu-button {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #333;
+    }
+    .menu {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 100;
+      border-radius: 5px;
+    }
+    .menu div {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .menu div:hover {
+      background-color: #f0f0f0;
+    }
+    .upload {
+      text-align: center;
+      padding: 30px;
+      background: #e8f5e9;
+    }
+    .upload input, .upload button {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+    .upload button {
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .upload button:hover {
+      background: #388e3c;
+    }
+    .about, .contact {
+      padding: 20px;
+      background-color: #fff;
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .about h2, .contact h2 {
+      color: #2c3e50;
+    }
+    footer {
+      text-align: center;
+      background-color: #2c3e50;
+      color: white;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+    .emoji {
+      font-size: 1.2em;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Welcome to Website of Photography 📸✨</h1>
+</header>
+<nav>
+  <a href="#home">Home 🏠</a>
+  <a href="#photos">See Photos 📷</a>
+  <a href="#upload">Upload 📤</a>
+  <a href="#about">About 👤</a>
+  <a href="#contact">Contact 📬</a>
+</nav>
+<section class="home" id="home">
+  <h2>Explore the Beauty Through the Lens 🌄</h2>
+  <p>Capturing moments from today… Creating memories for a lifetime. ❤️</p>
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" width="60%" style="border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-top: 20px;" alt="Inspiring Visual">
+</section>
+<section class="gallery" id="photos">
+</section>
+<section class="upload" id="upload">
+  <h2>Upload Your Photo 🖼️</h2>
+  <input type="file" id="photoInput" accept="image/*"><br><br>
+  <input type="text" id="photoDescription" placeholder="Add a description"><br><br>
+  <button onclick="uploadPhoto()">Upload</button>
+</section>
+<section class="about" id="about">
+  <h2>About 💡</h2>
+  <p>This website is created by <strong>KRISH OBORAI</strong> for photography enthusiasts to share and enjoy stunning visuals from around the world. Upload your own work and become part of our creative community!</p>
+</section>
+<section class="contact" id="contact">
+  <h2>Contact 📞</h2>
+  <p>If you have any questions or suggestions, feel free to reach out:</p>
+  <p>Email: <a href="mailto:krishoboroi337@gmail.com">krishoboroi337@gmail.com</a></p>
+</section>
+<footer>
+  &copy; 2025 www.krishoboigraphy.com community Photography Website. All rights reserved.
+</footer>
+<script>
+  function loadSavedPhotos() {
+    const photos = JSON.parse(localStorage.getItem('galleryPhotos') || '[]');
+    photos.forEach(photo => addPhotoToGallery(photo.imageSrc, photo.description));
+  }function savePhotosToLocalStorage() { const items = document.querySelectorAll('.gallery-item'); const data = []; items.forEach(item => { const img = item.querySelector('img').src; const desc = item.querySelector('p').innerText; data.push({ imageSrc: img, description: desc }); }); localStorage.setItem('galleryPhotos', JSON.stringify(data)); }
+
+function uploadPhoto() { const photoInput = document.getElementById('photoInput'); const photoDescription = document.getElementById('photoDescription').value;
+
+if (photoInput.files.length === 0) {
+  alert('Please select a photo to upload.');
+  return;
+}
+
+const reader = new FileReader();
+reader.onload = function(e) {
+  const imageSrc = e.target.result;
+  addPhotoToGallery(imageSrc, photoDescription);
+  savePhotosToLocalStorage();
+  photoInput.value = '';
+  document.getElementById('photoDescription').value = '';
+}
+reader.readAsDataURL(photoInput.files[0]);
+
+}
+
+function addPhotoToGallery(imageSrc, description) { const gallery = document.getElementById('photos'); const newDiv = document.createElement('div'); newDiv.className = 'gallery-item';
+
+newDiv.innerHTML = `
+  <button class="menu-button" onclick="toggleMenu(this)">&#8942;</button>
+  <div class="menu">
+    <div onclick="downloadPhoto('${imageSrc}')">Download</div>
+    <div onclick="deletePhoto(this)">Delete</div>
+  </div>
+  <img src="${imageSrc}" alt="Uploaded Photo">
+  <p>${description}</p>
+`;
+
+gallery.appendChild(newDiv);
+
+}
+
+function toggleMenu(button) { const menu = button.nextElementSibling; menu.style.display = menu.style.display === 'block' ? 'none' : 'block'; }
+
+function deletePhoto(menuOption) { const item = menuOption.closest('.gallery-item'); item.remove(); savePhotosToLocalStorage(); }
+
+function downloadPhoto(imageData) { const link = document.createElement('a'); link.href = imageData; link.download = 'photo.png'; link.click(); }
+
+document.addEventListener('click', function(e) { const menus = document.querySelectorAll('.menu'); menus.forEach(menu => { if (!menu.contains(e.target) && !menu.previousElementSibling.contains(e.target)) { menu.style.display = 'none'; } }); });
+
+window.onload = loadSavedPhotos;
+</script>
+</body>
+</html>
